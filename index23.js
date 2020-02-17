@@ -104,4 +104,33 @@ console.log(concated);
 console.log(concated.join());
 console.log(concated.join('***'));
 
-//28. 배열 내장함수 reduce
+//28. 배열 내장함수 reduce - 숫자
+const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+const addition = digits.reduce((accumulator, current) => accumulator + current, 0);
+console.log(addition);
+
+const average = digits.reduce((accumulator, current, index, array) => {
+  if (index === array.length - 1) {
+    return (accumulator + current) / array.length
+  }
+  return accumulator + current;
+}, 0)
+
+console.log(average);
+
+
+//29. 배열 내장함수 reduce - 문자열
+const alphabets = ['a', 'a', 'a', 'a', 'b', 'b', 'c', 'd', 'e']
+const counts = alphabets.reduce((acc, current) => {
+  if (acc[current]) {
+    acc[current] += 1;
+  } else {
+    acc[current] = 1;
+  }
+  return acc;
+}, {})
+
+console.log(counts)
+
+//30. 배열 내장함수 복습
