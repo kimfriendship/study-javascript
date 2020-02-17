@@ -133,4 +133,39 @@ const counts = alphabets.reduce((acc, current) => {
 
 console.log(counts)
 
-//30. 배열 내장함수 복습
+//30. 배열 내장함수 quiz
+function countBiggerThanTen(numbers) {
+  return numbers.reduce((acc, current) => {
+    if (current > 10) {
+      return acc + 1;
+    } else {
+      return acc;
+    }
+  }, 0);
+}
+
+const count1 = countBiggerThanTen([1, 2, 3, 5, 10, 20, 30, 40, 50, 60]);
+console.log(count1); // 5
+
+
+
+function countBiggerThanTen(numbers) {
+  return numbers.filter(n => n > 10).length;
+}
+
+const count2 = countBiggerThanTen([1, 2, 3, 5, 10, 20, 30, 40, 50, 60]);
+console.log(count2); // 5
+
+
+function countBiggerThanTen(numbers) {
+  let count3 = 0;
+  numbers.forEach(n => {
+    if (n > 10) {
+      count3++;
+    }
+  });
+  return count3;
+}
+
+const count3 = countBiggerThanTen([1, 2, 3, 5, 10, 20, 30, 40, 50, 60]);
+console.log(count3); // 5
