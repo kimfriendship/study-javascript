@@ -42,6 +42,16 @@ const todos = [{
     name: 2,
     task: '함수 배우기',
     done: false
+  },
+  {
+    name: 3,
+    task: '객체와 배열 배우기',
+    done: true
+  },
+  {
+    name: 4,
+    task: '배열 내장함수 배우기',
+    done: false
   }
 ]
 
@@ -50,3 +60,7 @@ console.log(fi);
 
 const find = todos.find(h => h.done === true);
 console.log(find);
+
+//25. 배열 내장함수 - filter
+const taskUndone = todos.filter(l => !l.done);
+console.log(taskUndone);
