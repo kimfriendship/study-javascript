@@ -66,7 +66,7 @@ const taskUndone = todos.filter(l => !l.done);
 console.log(taskUndone);
 
 //26. 배열 내장함수 - splice, slice
-const tens = [10, 20, 30, 40, 50];
+const tens = [10, 20, 30, 40, 50, 60, 70, 80, 90];
 
 const _index = tens.indexOf(30);
 console.log(_index);
@@ -79,4 +79,29 @@ const sliced = tens.slice(0, 2);
 console.log(sliced);
 console.log(tens);
 
-//27. 배열 내장함수 shift, pop, unshift, push
+//27. 배열 내장함수 shift, pop, unshift, push, concat, join
+const shift = tens.shift();
+console.log(shift);
+console.log(tens);
+
+const pop = tens.pop();
+tens.pop();
+console.log(pop);
+console.log(tens);
+
+tens.unshift(0);
+console.log(tens);
+
+tens.push(100);
+console.log(tens);
+
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+const concated = arr1.concat(arr2);
+console.log(concated);
+
+console.log(concated.join());
+console.log(concated.join('***'));
+
+//28. 배열 내장함수 reduce
