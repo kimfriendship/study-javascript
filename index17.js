@@ -59,4 +59,31 @@ while (!isFun) {
   }
 }
 
-//20
+//20 반복문 - for of, for in
+const numerics = [10, 20, 30, 40, 50];
+
+for (let number of numerics) {
+  console.log(number);
+}
+
+const texts = ['tlq', 'dltlq', 'tkatlq', 'tktlq', 'dhtlq'];
+
+for (let text of texts) {
+  console.log(text);
+}
+
+const bori = {
+  name: '보리',
+  sound: '엉뫄',
+  age: 1
+};
+
+console.log(Object.keys(bori));
+console.log(Object.values(bori));
+console.log(Object.entries(bori));
+
+for (let key in bori) {
+  console.log(`${key}: ${bori[key]}`);
+}
+
+//21. 반복문 - continue, break
