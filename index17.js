@@ -87,3 +87,8 @@ for (let key in bori) {
 }
 
 //21. 반복문 - continue, break
+for (let x = 0; x < 10; x++) {
+  if (x === 2) continue;
+  console.log(x);
+  if (x === 5) break;
+}
