@@ -64,3 +64,19 @@ console.log(find);
 //25. 배열 내장함수 - filter
 const taskUndone = todos.filter(l => !l.done);
 console.log(taskUndone);
+
+//26. 배열 내장함수 - splice, slice
+const tens = [10, 20, 30, 40, 50];
+
+const _index = tens.indexOf(30);
+console.log(_index);
+
+const spliced = tens.splice(_index, 2);
+console.log(tens);
+console.log(spliced);
+
+const sliced = tens.slice(0, 2);
+console.log(sliced);
+console.log(tens);
+
+//27. 배열 내장함수 shift, pop, unshift, push
