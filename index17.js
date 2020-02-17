@@ -39,3 +39,24 @@ const names = [
 for (let i = 0; i < names.length; i++) {
   console.log(names[i])
 };
+
+//19. 반복문 - while
+let i = 0;
+
+while (i < 10) {
+  console.log(i);
+  i++;
+}
+
+let u = 0;
+let isFun = false;
+
+while (!isFun) {
+  console.log(u);
+  u++;
+  if (u === 10) {
+    isFun = true;
+  }
+}
+
+//20
