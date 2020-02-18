@@ -262,3 +262,11 @@ function subtract(x, y, z) {
 const subtracts = [1, 2, 3]
 const result = subtract(...subtracts);
 console.log(result)
+
+//10. quiz
+function max(...biggest) {
+  return biggest.reduce((acc, current) => (acc > current ? acc : current), 0)
+}
+
+const result = max(1, 2, 3, 4, 10, 5, 6, 7);
+console.log(result);
