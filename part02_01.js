@@ -112,3 +112,26 @@ const area = calculateCircleArea(); //파라미터가 없을 때 기본값으로
 console.log(area);
 const area1 = calculateCircleArea(5);
 console.log(area1);
+
+//05. 조건문 스마트하게 쓰기
+function asdfAnimal(asdf) {
+  const animals = ['cat', 'dog', 'elephant', 'racoon'];
+  return animals.includes(asdf);
+}
+
+console.log(asdfAnimal('cat'));
+console.log(asdfAnimal('lizard'));
+
+function getSound(ani) {
+  const sounds = {
+    dog: 'barkbark',
+    cat: 'meow',
+    duck: 'quack'
+  };
+  return sounds[ani] || '...?'
+}
+
+console.log(getSound('cat'))
+console.log(getSound('mouse'))
+
+//06. 비구조화 할당
