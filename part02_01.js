@@ -104,3 +104,11 @@ function nameget(b) {
 
 const c = nameget(coconut)
 console.log(c);
+
+//04. 함수의 기본 파라미터
+const calculateCircleArea = (r = 1) => Math.PI * r * r;
+
+const area = calculateCircleArea(); //파라미터가 없을 때 기본값으로 출력
+console.log(area);
+const area1 = calculateCircleArea(5);
+console.log(area1);
