@@ -219,4 +219,30 @@ console.log(abc)
 console.log(abcde)
 console.log(abcdabc)
 
-//08. rest 연산자
+//08. rest 연산자 -  객체
+const bori = {
+  name: 'bori',
+  age: '2',
+  type: 'cheese',
+  favfood: 'chicken'
+}
+
+const {
+  age,
+  ...rest
+} = bori;
+console.log(rest);
+
+const {
+  favfood,
+  ...chicken
+} = bori;
+console.log(chicken);
+
+
+//08. rest 연산자 -  배열
+const docs = ['words', 'ppt', 'excel'];
+
+const [j, ...restt] = docs;
+
+console.log(restt)
