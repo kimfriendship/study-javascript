@@ -189,3 +189,34 @@ const [cu, em, lo, ri = 4] = ray;
 
 console.log(cu);
 console.log(ri);
+
+//07. spread 연산자 - 객체
+const slime = {
+  name: 'slime'
+}
+
+const cuteSlime = {
+  ...slime,
+  attribute: 'cute'
+}
+
+const greenCuteSlime = {
+  ...cuteSlime,
+  color: 'green'
+}
+
+console.log(slime)
+console.log(cuteSlime)
+console.log(greenCuteSlime)
+
+
+//07. spread 연산자 - 배열
+const abc = ['a', 'b', 'c']
+const abcde = [...abc, 'd', 'e']
+const abcdabc = [...abc, 'd', ...abc]
+
+console.log(abc)
+console.log(abcde)
+console.log(abcdabc)
+
+//08. rest 연산자
