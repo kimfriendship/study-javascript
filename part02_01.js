@@ -268,5 +268,37 @@ function max(...biggest) {
   return biggest.reduce((acc, current) => (acc > current ? acc : current), 0)
 }
 
-const result = max(1, 2, 3, 4, 10, 5, 6, 7);
-console.log(result);
+const result123 = max(1, 2, 3, 4, 10, 5, 6, 7);
+console.log(result123);
+
+//11. scope - global
+const hello = 'hello!'
+console.log('globalscope: ')
+console.log(hello)
+//11. scope - function
+function myfunc() {
+  console.log('myfunc: ')
+  const hello = 'bye!'
+  console.log(hello)
+}
+
+myfunc()
+
+
+//11. scope - block
+
+function otherfunc() {
+  const hello = '안녕하세요'
+  if (true) {
+    const hello = '안녕히 가세요'
+    console.log('blockscope: ')
+    console.log(hello)
+  }
+  console.log('otherfunc: ')
+  console.log(hello)
+}
+
+otherfunc()
+
+
+//12. hoisting
