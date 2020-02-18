@@ -246,3 +246,19 @@ const docs = ['words', 'ppt', 'excel'];
 const [j, ...restt] = docs;
 
 console.log(restt)
+
+//09. rest 연산자 - 파라미터
+function sum(...suum) {
+  return suum.reduce((acc, current) => acc + current, 0);
+}
+
+console.log(sum(1, 2, 3, 4, 5, 5, 6, 7, 8, 8, 9))
+
+//10. spread - 함수 인자
+function subtract(x, y, z) {
+  return z - x - y
+}
+
+const subtracts = [1, 2, 3]
+const result = subtract(...subtracts);
+console.log(result)
