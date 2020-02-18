@@ -59,4 +59,48 @@ if (value2) {
 const truthy = value2 ? true : false;
 console.log(truthy);
 
-//03. 단축 평가 논리 계산법
+//03. 단축 평가 논리 계산법 - &&
+console.log(undefined && 'hello')
+console.log(null && 'bye')
+console.log(!0 && 1003)
+console.log('' && 'wooey')
+console.log('hello' && !NaN)
+console.log([] && !false)
+
+
+//03. 단축 평가 논리 계산법 - && 응용1
+const bird = {
+  name: 'birdy'
+}
+
+function getName(animal) {
+  return animal && animal.name;
+}
+
+const name = getName(bird)
+console.log(name);
+
+//03. 단축 평가 논리 계산법 - && 응용2
+const object = null;
+const name1 = object && object.name; //error가 나지 않음
+console.log(name1);
+
+
+//03. 단축 평가 논리 계산법 - ||
+console.log(undefined || 'hello')
+console.log(null || 'bye')
+console.log(!0 || 1003)
+console.log('' || 'wooey')
+console.log('hello' || !NaN)
+console.log([] || !false)
+
+//03. 단축 평가 논리 계산법 - || 응용
+const coconut = {};
+
+function nameget(b) {
+  const c = b && b.c;
+  return c || '이름이 없는 동물입니다.'
+}
+
+const c = nameget(coconut)
+console.log(c);
