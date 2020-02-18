@@ -134,4 +134,58 @@ function getSound(ani) {
 console.log(getSound('cat'))
 console.log(getSound('mouse'))
 
-//06. 비구조화 할당
+//06. 비구조화 할당 - 객체
+const objects = {
+  a: 1
+};
+
+const {
+  a,
+  b = 2
+} = objects;
+console.log(a);
+console.log(b);
+
+const lala = {
+  name: 'Bori',
+  type: 'cat'
+}
+
+const {
+  name: nickname
+} = lala;
+console.log(nickname);
+
+
+//06. 비구조화 할당 - 깊은 객체
+const deepobject = {
+  state: {
+    information: {
+      naame: 'wooey',
+      lang: ['korean', 'english', 'french']
+    }
+  },
+  valuee: 5
+}
+
+const {
+  naame,
+  lang: [fi]
+} = deepobject.state.information;
+const {
+  valuee
+} = deepobject;
+
+const extracted = {
+  naame,
+  fi,
+  valuee
+};
+
+console.log(extracted);
+//06. 비구조화 할당 - 배열
+const ray = [1, 2, 3];
+const [cu, em, lo, ri = 4] = ray;
+
+console.log(cu);
+console.log(ri);
