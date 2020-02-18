@@ -302,3 +302,13 @@ otherfunc()
 
 
 //12. hoisting
+// console.log(qwer)
+// const qwer = 'qwer'
+
+// console.log(uiop)
+// let iuiop = 'uiop'
+
+console.log(fdsa)
+var fdsa = 'fdsa'
+
+//var는 hoisting이 발생하지만 const와 let은 발생하지 않는다
