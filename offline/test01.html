@@ -12,7 +12,7 @@
   <button id="decrease">-</button>
   <script>
     // 에러를 발생시키는 코드: 선택자는 'counter-x'가 아니라 'counter'를 지정해야 한다.
-    const $counter = document.getElementById('counter-x');
+    const $counter = document.getElementById('counter');
     const $increase = document.getElementById('increase');
     const $decrease = document.getElementById('decrease');
 
@@ -33,6 +33,15 @@
       render();
     };
   </script>
+
+  <script>
+    console.log(score);
+    score = 80;
+    var score;
+
+    console.log(score);
+  </script>
+
 </body>
 
 </html>
