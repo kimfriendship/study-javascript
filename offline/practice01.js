@@ -131,5 +131,35 @@ for (var i = 0; i < line; i++) {
 console.log(result);
 
 // 15. 정삼각형 출력하기
+var result = "";
+
+for (var i = 0; i < line; i++) {
+  var space = "";
+  var star = "";
+  for (var j = 1; j < line - i; j++) {
+    space += " ";
+  }
+  for (var k = 0; k <= i * 2; k++) {
+    star += "*";
+  }
+  result += space + star + "\n";
+}
+
+console.log(result);
 
 // 16. 역정삼각형 출력하기
+var result = "";
+
+for (var i = line; i > 0; i--) {
+  var space = "";
+  var star = "";
+  for (var j = 0; j < line - i; j++) {
+    space += " ";
+  }
+  for (var k = 1; k < i * 2; k++) {
+    star += "*";
+  }
+  result += space + star + "\n";
+}
+
+console.log(result);
