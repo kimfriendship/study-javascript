@@ -87,13 +87,13 @@ console.log(star);
 var result = "";
 
 for (var i = line; i > 0; i--) {
-  var star = "";
   var space = "";
-  for (var j = 0; j < i; j++) {
-    star += "*";
-  }
-  for (var k = 0; k < line - i; k++) {
+  var star = "";
+  for (var j = 0; j < line - i; j++) {
     space += " ";
+  }
+  for (var k = 0; k < i; k++) {
+    star += "*";
   }
   result += space + star + "\n";
 }
@@ -101,8 +101,34 @@ for (var i = line; i > 0; i--) {
 console.log(result);
 
 // 13. 삼각형 출력하기 - pattern3
+var result = "";
+
+for (var i = line; i > 0; i--) {
+  var star = "";
+  for (var j = 0; j < i; j++) {
+    star += "*";
+  }
+  result += star + "\n";
+}
+
+console.log(result);
 
 // 14. 삼각형 출력하기 - pattern4
+var result = "";
+
+for (var i = 0; i < line; i++) {
+  var space = "";
+  var star = "";
+  for (var j = 1; j < line - i; j++) {
+    space += " ";
+  }
+  for (var k = 0; k <= i; k++) {
+    star += "*";
+  }
+  result += space + star + "\n";
+}
+
+console.log(result);
 
 // 15. 정삼각형 출력하기
 
