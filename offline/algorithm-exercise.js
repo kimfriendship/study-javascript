@@ -1,6 +1,6 @@
 // 1. 선형 검색
 function linearSearch(array, target) {
-  let result = target;
+  let result = -1;
   for (let i = 0; i < array.length; i++) {
     if (array[i] === target) result = i;
   }
@@ -18,10 +18,8 @@ function binarySearch(array, target) {
   let start = 0;
   let end = array.length - 1;
   let mid = Math.floor(start + end / 2);
-  while (true) {
-    if (start === end && array[mid] !== target) {
-      break;
-    } else if (array[mid] === target) {
+  while (!(start === end && array[mid] !== target)) {
+    if (array[mid] === target) {
       result = mid;
       break;
     } else if (array[mid] > target) {
