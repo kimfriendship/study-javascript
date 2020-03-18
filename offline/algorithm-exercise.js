@@ -41,8 +41,9 @@ console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 9)); // 8
 // 3. 버블 정렬
 function bubbleSort(array) {
   let sortArray = [array[0]];
-  for (let j = 1; j < array.length - 1; j++) {
-    for (let i = 1; i < array.length; i++) {
+  let range = array.length;
+  for (let j = 1; j < range - 1; j++) {
+    for (let i = 1; i < range; i++) {
       if (sortArray[i - 1] < array[i]) {
         sortArray[i] = array[i];
       } else {
