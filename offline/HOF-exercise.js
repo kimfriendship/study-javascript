@@ -36,9 +36,7 @@ console.log(getValues('content'));
 console.log(getValues('completed'));
 
 // 3. 프로퍼티 정렬
-function sortBy(key) {
-
-}
+function sortBy(key) {}
 
 console.log(sortBy('id'));
 console.log(sortBy('content'));
@@ -77,22 +75,33 @@ removeTodo(2);
 console.log(todos);
 
 // 6. 특정 요소의 프로퍼티 값 반전
-function toggleCompletedById(id) {
+function toggleCompletedById1(id) {
   todos.map(todo => {
     if (todo.id === id) todo.completed = !(todo.completed);
   })
 }
 
-toggleCompletedById(3);
+function toggleCompletedById2(id) {
+  todos.map(todo => {
+    if (todo.id === id) {
+      todo = Object.assign(todo, {
+        completed: !(todo.completed)
+      })
+    }
+  })
+}
+
+toggleCompletedById1(3);
+console.log(todos);
+
+toggleCompletedById2(3);
 console.log(todos);
 
 // 7. 모든 요소의 completd 프로퍼티 값을 true로 설정
-function toggleCompletedAll() {
-
-}
+function toggleCompletedAll() {}
 
 toggleCompletedAll();
-console.log(todos);
+// console.log(todos);
 
 // 8. completed 프로퍼티의 값이 true인 요소의 갯수 구하기
 function countCompletedTodos() {
