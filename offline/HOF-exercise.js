@@ -36,7 +36,10 @@ console.log(getValues('content'));
 console.log(getValues('completed'));
 
 // 3. 프로퍼티 정렬
-function sortBy(key) {}
+function sortBy(key) {
+  todos.sort((a, b) => a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0))
+  return todos;
+}
 
 console.log(sortBy('id'));
 console.log(sortBy('content'));
