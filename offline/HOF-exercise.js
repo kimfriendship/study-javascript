@@ -56,3 +56,11 @@ function removeTodo(id) {
 
 removeTodo(2);
 console.log(todos);
+
+// 8. completed 프로퍼티의 값이 true인 요소의 갯수 구하기
+function countCompletedTodos() {
+  let result = todos.filter(todo => todo.completed === true).length;
+  return result;
+}
+
+console.log(countCompletedTodos());
