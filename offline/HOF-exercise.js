@@ -101,10 +101,14 @@ toggleCompletedById2(3);
 console.log(todos);
 
 // 7. 모든 요소의 completd 프로퍼티 값을 true로 설정
-function toggleCompletedAll() {}
+function toggleCompletedAll() {
+  todos.map(todo => todo = Object.assign(todo, {
+    completed: true
+  }));
+}
 
 toggleCompletedAll();
-// console.log(todos);
+console.log(todos);
 
 // 8. completed 프로퍼티의 값이 true인 요소의 갯수 구하기
 function countCompletedTodos() {
