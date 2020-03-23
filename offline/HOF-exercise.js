@@ -1,5 +1,4 @@
-// 1. html 생성
-const todos = [{
+let todos = [{
   id: 3,
   content: 'HTML',
   completed: false
@@ -35,4 +34,10 @@ console.log(getValues('id'));
 console.log(getValues('content'));
 console.log(getValues('completed'));
 
-// 3. 
+// 5. 특정 요소 삭제
+function removeTodo(id) {
+  todos = todos.filter(todo => todo.id !== id);
+}
+
+removeTodo(2);
+console.log(todos);
