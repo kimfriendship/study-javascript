@@ -12,6 +12,7 @@ let todos = [{
   completed: false
 }];
 
+// 1. html 생성
 function render() {
   let html = '';
   todos.forEach(todo => {
@@ -33,6 +34,20 @@ function getValues(key) {
 console.log(getValues('id'));
 console.log(getValues('content'));
 console.log(getValues('completed'));
+
+// 3. 프로퍼티 정렬
+
+// 4. 새로운 요소 추가
+function addTodo(newTodo) {
+  todos = [todos, ...[newTodo]].flat();
+}
+
+addTodo({
+  id: 4,
+  content: 'Test',
+  completed: false
+});
+console.log(todos);
 
 // 5. 특정 요소 삭제
 function removeTodo(id) {
