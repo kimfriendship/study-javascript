@@ -45,7 +45,7 @@ function addTodo(newTodo) {
 addTodo({
   id: 4,
   content: 'Test',
-  completed: false
+  completed: true
 });
 console.log(todos);
 
@@ -59,8 +59,15 @@ console.log(todos);
 
 // 8. completed 프로퍼티의 값이 true인 요소의 갯수 구하기
 function countCompletedTodos() {
-  let result = todos.filter(todo => todo.completed === true).length;
+  const result = todos.filter(todo => todo.completed).length;
   return result;
 }
 
 console.log(countCompletedTodos());
+
+// 9. id 프로퍼티의 값 중에서 최대값 구하기
+function getMaxId() {
+  return todos.length ? Math.max(...todos.map(todo => todo.id)) : 0;
+}
+
+console.log(getMaxId());
