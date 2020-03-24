@@ -100,8 +100,6 @@ console.log(toggleCompletedById2(3));
 console.log(toggleCompletedById3(3));
 
 // 7. 모든 요소의 completd 프로퍼티 값을 true로 설정
-console.log('7번 문제');
-
 function toggleCompletedAll1() {
   return todos.map(todo => Object.assign(todo, { completed: true }));
 }
