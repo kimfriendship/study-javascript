@@ -12,6 +12,7 @@ let todos = [{
   completed: false
 }];
 
+
 // 1. html 생성
 function render() {
   let html = '';
@@ -19,12 +20,13 @@ function render() {
     html += `<li id="${todo.id}">
   <label><input type="checkbox"${todo.completed ? ' checked' : ''}>${todo.content}</label>
 </li>
-`
-  })
+`;
+  });
   return html;
 }
 
 console.log(render());
+
 
 // 2. 특정 프로퍼티 값 추출
 function getValues(key) {
@@ -35,9 +37,10 @@ console.log(getValues('id'));
 console.log(getValues('content'));
 console.log(getValues('completed'));
 
+
 // 3. 프로퍼티 정렬
 function sortBy(key) {
-  todos.sort((a, b) => a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0))
+  todos.sort((a, b) => a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0));
   return todos;
 }
 
@@ -69,6 +72,7 @@ addTodo2({
 });
 console.log(todos);
 
+
 // 5. 특정 요소 삭제
 function removeTodo(id) {
   todos = todos.filter(todo => todo.id !== id)
@@ -77,9 +81,10 @@ function removeTodo(id) {
 removeTodo(2);
 console.log(todos);
 
+
 // 6. 특정 요소의 프로퍼티 값 반전
 function toggleCompletedById1(id) {
-  return todos.map(todo => { 
+  return todos.map(todo => {
     if (todo.id === id) todo.completed = !todo.completed; 
     return todo;
   });
@@ -94,10 +99,9 @@ function toggleCompletedById3(id) {
 }
 
 console.log(toggleCompletedById1(3));
-
 console.log(toggleCompletedById2(3));
-
 console.log(toggleCompletedById3(3));
+
 
 // 7. 모든 요소의 completd 프로퍼티 값을 true로 설정
 function toggleCompletedAll1() {
@@ -109,8 +113,8 @@ function toggleCompletedAll2() {
 }
 
 console.log(toggleCompletedAll1());
-
 console.log(toggleCompletedAll2());
+
 
 // 8. completed 프로퍼티의 값이 true인 요소의 갯수 구하기
 function countCompletedTodos() {
@@ -119,6 +123,7 @@ function countCompletedTodos() {
 }
 
 console.log(countCompletedTodos());
+
 
 // 9. id 프로퍼티의 값 중에서 최대값 구하기
 function getMaxId() {
