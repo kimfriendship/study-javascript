@@ -79,36 +79,40 @@ console.log(todos);
 
 // 6. 특정 요소의 프로퍼티 값 반전
 function toggleCompletedById1(id) {
-  todos.map(todo => {
-    if (todo.id === id) todo.completed = !(todo.completed);
-  })
+  return todos.map(todo => { 
+    if (todo.id === id) todo.completed = !todo.completed; 
+    return todo;
+  });
 }
 
 function toggleCompletedById2(id) {
-  todos.map(todo => {
-    if (todo.id === id) {
-      todo = Object.assign(todo, {
-        completed: !(todo.completed)
-      })
-    }
-  })
+  return todos.map(todo => (todo.id === id ? Object.assign(todo, { completed: !todo.completed }) : todo));
 }
 
-toggleCompletedById1(3);
-console.log(todos);
+function toggleCompletedById3(id) {
+  return todos.map(todo => (todo.id === id ? { ...todo, completed: !todo.completed } : todo));
+}
 
-toggleCompletedById2(3);
-console.log(todos);
+console.log(toggleCompletedById1(3));
+
+console.log(toggleCompletedById2(3));
+
+console.log(toggleCompletedById3(3));
 
 // 7. 모든 요소의 completd 프로퍼티 값을 true로 설정
-function toggleCompletedAll() {
-  todos.map(todo => todo = Object.assign(todo, {
-    completed: true
-  }));
+console.log('7번 문제');
+
+function toggleCompletedAll1() {
+  return todos.map(todo => Object.assign(todo, { completed: true }));
 }
 
-toggleCompletedAll();
-console.log(todos);
+function toggleCompletedAll2() {
+  return todos.map(todo => ({ ...todo, completed: true }));
+}
+
+console.log(toggleCompletedAll1());
+
+console.log(toggleCompletedAll2());
 
 // 8. completed 프로퍼티의 값이 true인 요소의 갯수 구하기
 function countCompletedTodos() {
