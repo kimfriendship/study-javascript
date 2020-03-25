@@ -129,7 +129,7 @@ console.log(countCompletedTodos());
 
 // 9. id 프로퍼티의 값 중에서 최대값 구하기
 function getMaxId() {
-  return Math.max(...todos.map(todo => todo.id));
+  return todos.length ? Math.max(...todos.map(todo => todo.id)) : 0;
 }
 
 console.log(getMaxId());
