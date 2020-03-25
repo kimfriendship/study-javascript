@@ -1,3 +1,4 @@
+// Array Methods ----------------------------------------------------------------
 // 1. Array.isArray: returns boolean
 console.log(Array.isArray([])); // true
 console.log(Array.isArray(new Array)); // true
@@ -105,3 +106,28 @@ console.log(unflat.flat()); // [ 1, 2, 3, [ 4, 5, [ 6 ] ] ]
 console.log(unflat.flat(2)); // [ 1, 2, 3, 4, 5, [ 6 ] ]
 console.log(unflat.flat(Infinity)); // [ 1, 2, 3, 4, 5, 6 ]
 
+// HOF Methods----------------------------------------------------------------
+// 1. Array.prototype.sort
+const fruits = ['Banana', 'Orange', 'Apple'];
+
+fruits.sort();
+
+console.log(fruits); // [ 'Apple', 'Banana', 'Orange' ]
+
+// 2. Array.prototype.forEach
+const numbers = [1, 2, 3, 4, 5, 6, 7];
+let pows = [];
+
+numbers.forEach(item => pows.push(item ** 2));
+
+console.log(pows); // [1,  4,  9, 16, 25, 36, 49]
+
+
+// 3. Array.prototype.map
+// 4. Array.prototype.filter
+// 5. Array.prototype.reduce
+// 6. Array.prototype.some
+// 7. Array.prototype.every
+// 8. Array.prototype.find
+// 9. Array.prototype.findIndex
+// 10. Array.prototype.flatMap

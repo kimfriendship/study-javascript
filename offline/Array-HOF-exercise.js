@@ -40,7 +40,7 @@ console.log(getValues('completed'));
 
 // 3. 프로퍼티 정렬
 function sortBy(key) {
-  todos.sort((a, b) => a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0));
+  todos.sort((a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0)));
   return todos;
 }
 
@@ -51,7 +51,7 @@ console.log(sortBy('completed'));
 
 // 4. 새로운 요소 추가
 function addTodo1(newTodo) {
-  todos = [...[newTodo], ...todos].flat();
+  todos = [newTodo, ...todos];
 }
 
 function addTodo2(newTodo) {
