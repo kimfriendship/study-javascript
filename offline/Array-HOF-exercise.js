@@ -91,7 +91,7 @@ function toggleCompletedById1(id) {
 }
 
 function toggleCompletedById2(id) {
-  return todos.map(todo => (todo.id === id ? Object.assign(todo, { completed: !todo.completed }) : todo));
+  return todos.map(todo => (todo.id === id ? Object.assign({}, todo, { completed: !todo.completed }) : todo));
 }
 
 function toggleCompletedById3(id) {
@@ -105,7 +105,7 @@ console.log(toggleCompletedById3(3));
 
 // 7. 모든 요소의 completd 프로퍼티 값을 true로 설정
 function toggleCompletedAll1() {
-  return todos.map(todo => Object.assign(todo, { completed: true }));
+  return todos.map(todo => Object.assign({}, todo, { completed: true }));
 }
 
 function toggleCompletedAll2() {
