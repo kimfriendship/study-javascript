@@ -108,15 +108,17 @@ console.log(todos);
 
 // 7. 모든 요소의 completd 프로퍼티 값을 true로 설정
 function toggleCompletedAll1() {
-  return todos.map(todo => Object.assign({}, todo, { completed: true }));
+  todos = todos.map(todo => Object.assign({}, todo, { completed: true }));
 }
 
 function toggleCompletedAll2() {
-  return todos.map(todo => ({ ...todo, completed: true }));
+  todos = todos.map(todo => ({ ...todo, completed: true }));
 }
 
-console.log(toggleCompletedAll1());
-console.log(toggleCompletedAll2());
+toggleCompletedAll1();
+console.log(todos);
+toggleCompletedAll2();
+console.log(todos);
 
 
 // 8. completed 프로퍼티의 값이 true인 요소의 갯수 구하기
