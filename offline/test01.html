@@ -1,82 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Counter</title>
-  </head>
 
-  <body>
-    <div id="counter">0</div>
-    <button id="increase">+</button>
-    <button id="decrease">-</button>
-    <script>
-      // 에러를 발생시키는 코드: 선택자는 'counter-x'가 아니라 'counter'를 지정해야 한다.
-      const $counter = document.getElementById("counter");
-      const $increase = document.getElementById("increase");
-      const $decrease = document.getElementById("decrease");
+<head>
+  <meta charset="UTF-8" />
+  <title>Counter</title>
+</head>
 
-      let num = 0;
-      const render = function() {
-        $counter.innerHTML = num;
-      };
+<body>
+  <script>
+    for (var i = 0; i < 3; i++) {
+      setTimeout(() => console.log(i), 1);
+      console.log(i);
+    }
+  </script>
+</body>
 
-      $increase.onclick = function() {
-        num++;
-        console.log("increase 버튼 클릭", num);
-        render();
-      };
-
-      $decrease.onclick = function() {
-        num--;
-        console.log("decrease 버튼 클릭", num);
-        render();
-      };
-    </script>
-
-    <script>
-      console.log(score);
-      score = 80;
-      var score;
-
-      console.log(score);
-    </script>
-
-    <script>
-      function factorial(n) {
-        // 탈출 조건: n이 1 이하일 때 재귀 호출을 멈춘다.
-        if (n <= 1) return 1;
-        // 재귀 호출
-        return n * factorial(n - 1);
-      }
-
-      console.log(factorial(5));
-    </script>
-
-    <script>
-      function makeCounter(predicate) {
-        let counter = 0;
-
-        return function() {
-          counter = predicate(counter);
-          return counter;
-        };
-      }
-
-      function increase(n) {
-        return ++n;
-      }
-
-      function decrease(n) {
-        return --n;
-      }
-
-      const increaser = makeCounter(increase);
-      const decreaser = makeCounter(decrease);
-
-      console.log(increaser());
-      console.log(increaser());
-      console.log(decreaser());
-      console.log(decreaser());
-    </script>
-  </body>
 </html>
