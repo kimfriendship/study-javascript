@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
+  <body>
+    <input id="텍스트 인풋" type="text" value="어트리뷰트 값">
+    <input id="체크박스" type="checkbox" checked>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Counter</title>
-</head>
+    <script>
+      const $textbox = document.getElementById('텍스트 인풋');
+      const $checkbox = document.getElementById('체크박스');
 
-<body>
-  <script>
-    for (var i = 0; i < 3; i++) {
-      setTimeout(() => console.log(i), 1);
-      console.log(i);
-    }
-  </script>
-</body>
+      $textbox.oninput = function (e) {
+        console.log('어트리뷰트 value', $textbox.getAttribute('value'));
+        console.log('프로퍼티 value', $textbox.value);
+      };
 
+      $checkbox.onchange = function (e) {
+        console.log('어트리뷰트', $checkbox.getAttribute('checked'));
+        console.log('프로퍼티', $checkbox.checked);
+      };
+    </script>
+  </body>
 </html>
