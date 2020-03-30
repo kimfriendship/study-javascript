@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" class="inputTodo" placeholder="enter todo!">
+  <ul class="todos"></ul>
+  <script>
+    const $inputTodo = document.querySelector('.inputTodo');
+    const $todos = document.querySelector('.todos');
+
+    $inputTodo.onkeyup = function (e) {
+      if (e.keyCode !== 13) return;
+      $todos.innerHTML += `<li>${$inputTodo.value}</li>`;
+      $inputTodo.value = '';
+}; 
+</script>
+</body>
+</html>
