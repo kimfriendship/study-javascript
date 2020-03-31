@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <input id="텍스트 인풋" type="text" value="어트리뷰트 값">
-    <input id="체크박스" type="checkbox" checked>
+<style>
+  #drinks {
+    list-style-type: none;
+    display: flex;
+  }
 
-    <script>
-      const $textbox = document.getElementById('텍스트 인풋');
-      const $checkbox = document.getElementById('체크박스');
+  #drinks li {
+    margin-right: 20px;
+    cursor: pointer;
+  }
 
-      $textbox.oninput = function (e) {
-        console.log('어트리뷰트 value', $textbox.getAttribute('value'));
-        console.log('프로퍼티 value', $textbox.value);
-      };
+  .active {
+    font-weight: 800;
+    text-decoration: underline;
+  }
+</style>
 
-      $checkbox.onchange = function (e) {
-        console.log('어트리뷰트', $checkbox.getAttribute('checked'));
-        console.log('프로퍼티', $checkbox.checked);
-      };
-    </script>
-  </body>
+<body>
+  <nav>
+    <ul id="drinks">
+      <li id="coffee">coffee</li>
+      <li id="juice">juice</li>
+      <li id="frappe">frappe</li>
+    </ul>
+  </nav>
+  <strong class="msg"></strong>
+  <script>
+    const $drinks = document.getElementById('drinks');
+    const $msg = document.querySelector('.msg');
+
+    $drinks.onclick = e => {
+      if (!e.target.matches('#drinks > li')) return;
+      [...$drinks.children].forEach($drink => {
+        $drink.classList.toggle('active', e.target === $drink);
+      });
+      $msg.textContent = e.target.id;
+    };
+  </script>
+
+</body>
+
 </html>
