@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <input type="text" class="inputTodo" placeholder="enter todo!">
   <ul class="todos"></ul>
@@ -14,9 +16,22 @@
 
     $inputTodo.onkeyup = function (e) {
       if (e.keyCode !== 13) return;
-      $todos.innerHTML += `<li>${$inputTodo.value}</li>`;
+      $todos.innerHTML += `<li><input type="checkbox"> ${$inputTodo.value} <button>x</button></li>`;
+      // $li = document.createElement('li');
+      // $li.appendChild(document.createTextNode(`${$inputTodo.value}`));
+      // $todos.appendChild($li);
       $inputTodo.value = '';
-}; 
-</script>
+    };
+
+    $todos.onchange = function (e) {
+      e.target.parentNode.style.textDecoration = e.target.checked ? 'line-through' : 'none';
+    };
+
+    $todos.onclick = function (e) {
+      if (!e.target.matches('.todos > li > button')) return;
+      $todos.removeChild(e.target.parentNode);
+    };
+  </script>
 </body>
+
 </html>
