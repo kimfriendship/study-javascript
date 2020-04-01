@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<style>
+  #drinks {
+    list-style-type: none;
+    display: flex;
+  }
+
+  #drinks li {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  .active {
+    font-weight: 800;
+    text-decoration: underline;
+  }
+
+  .msg,
+  .coords {
+    display: block;
+  }
+
+  .box {
+    width: 50px;
+    height: 50px;
+    background-color: aquamarine;
+    border: 2px solid lightseagreen;
+  }
+</style>
+
+<body>
+  <nav>
+    <ul id="drinks">
+      <li id="coffee">coffee</li>
+      <li id="juice">juice</li>
+      <li id="frappe">frappe</li>
+      <li id="smoothie">smoothie</li>
+      <li id="tea">tea</li>
+    </ul>
+  </nav>
+  <strong class="msg">id</strong>
+  <em class="coords">coords</em>
+  <div class="box"></div>
+  <script>
+    const $drinks = document.getElementById('drinks');
+    const $msg = document.querySelector('.msg');
+    const $coords = document.querySelector('.coords');
+    const $box = document.querySelector('.box');
+
+    $drinks.onclick = e => {
+      if (!e.target.matches('#drinks > li')) return;
+
+      [...$drinks.children].forEach($drink => {
+        $drink.classList.toggle('active', e.target === $drink);
+      });
+
+      $msg.textContent = `ID ${e.target.id}`;
+    };
+
+    window.onclick = e => {
+      $coords.textContent = `coords x: ${e.clientX}, y: ${e.clientY}`
+    };
+
+    const originCoords = {
+      x: 0,
+      y: 0
+    };
+    const movedCoords = {
+      x: 0,
+      y: 0
+    };
+
+    function move(e) {
+      movedCoords.x = e.clientX - originCoords.x;
+      movedCoords.y = e.clientY - originCoords.y;
+
+      $box.style.transform = `translate3d(${movedCoords.x}px, ${movedCoords.y}px, 0)`;
+    }
+
+    $box.addEventListener('mousedown', e => {
+      originCoords.x = e.clientX - movedCoords.x;
+      originCoords.y = e.clientY - movedCoords.y;
+
+      document.addEventListener('mousemove', move);
+    });
+
+    document.addEventListener('mouseup', e => {
+      document.removeEventListener('mousemove', move);
+    });
+  </script>
+
+</body>
+</html>
