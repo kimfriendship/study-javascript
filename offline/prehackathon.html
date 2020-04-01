@@ -60,6 +60,45 @@
       </ul>
     </div>
   </div>
+  <script>
+    const $newInfo = document.querySelector('.newInfo');
+    const $newName = document.querySelector('.newName');
+    const $newCompany = document.querySelector('.newCompany');
+    const $newDivision = document.querySelector('.newDivision');
+    const $newEmail = document.querySelector('.newEmail');
+    const $newMobile = document.querySelector('.newMobile');
+    const $submitBtn = document.querySelector('.submitBtn');
+    const $cardList = document.querySelector('.cardList');
+
+    const regExpEmail = /^[A-Za-z0-9]{8, 10}*@[A-Za-z0-9]*\.[a-zA-Z]{2,3}$/;
+    const regExpMobile = /^\d{3}-\d{4}-\d{4}$/;
+
+    $submitBtn.onclick = () => {
+      [...$newInfo.children].forEach(newInfo => {
+        if (newInfo.value.length === 0) return;
+      });
+
+      // if (!regExpEmail.test($newEmail.value)) alert('이메일을 재작성하세요');
+      // if (!regExpMobile.test($newMobile.value)) alert('번호을 재작성하세요');
+
+      console.log([...$newInfo.children].map(newInfo => newInfo.value));
+
+      $cardList.innerHTML += `<li class="namecard">
+          <span class="cardName">${$newName.value}</span>
+          <span class="cardCompany">${$newCompany.value}</span>
+          <span class="cardDivision">${$newDivision.value}</span>
+          <span class="cardEmail">${$newEmail.value}</span>
+          <span class="cardMobile">${$newMobile.value}</span>
+          <button class="deleteBtn">X</button>
+        </li>`;
+    };
+
+    $cardList.onclick = e => {
+      if (e.target.matches('.deleteBtn')) {
+        $cardList.removeChild(e.target.parentNode);
+      }
+    };
+  </script>
 </body>
 
 </html>
