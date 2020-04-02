@@ -5,85 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NAME CARD LIST</title>
-  <!-- <link rel="stylesheet" href="./reset.css"> -->
-  <style>
-    .wrapper {
-      width: 100%;
-      background-color: antiquewhite;
-    }
-
-    .wrapper * {
-      box-sizing: border-box;
-    }
-
-    .clearfix::after {
-      display: block;
-      content: '';
-      clear: both;
-    }
-
-    .newInfo {
-      width: 300px;
-      margin: 20px;
-      background-color: burlywood;
-      float: left;
-      padding: 10px;
-    }
-
-    .newInfo input,
-    .newInfo button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
-    }
-
-
-    .namecardList {
-      width: calc(100% - 380px);
-      margin: 20px;
-      background-color: darkgray;
-      float: right;
-      padding: 10px;
-    }
-
-    .sortList {
-      float: right;
-      width: 70%;
-      text-align: right;
-      background-color: darkkhaki;
-      margin-bottom: 10px;
-    }
-
-    .sortList>li {
-      display: inline-block;
-    }
-
-    .cardList {
-      width: 100%;
-      background-color: darksalmon;
-      clear: both;
-    }
-
-    .namecard {
-      width: calc(50% - 10px);
-      background-color: #f4f4f4;
-      margin: 10px 10px 0 0;
-      float: left;
-    }
-
-    .namecard span {
-      display: block;
-
-    }
-  </style>
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./main.css">
+  <!-- <script src="./main.js" defer></script> -->
 </head>
 
 <body>
 
   <div class="wrapper clearfix">
-
+    <h1>NAMECARD</h1>
     <div class="newInfo">
+      <h2>NAMECARD EDIT</h2>
       <input type="text" class="newName" placeholder="이름">
       <input type="text" class="newCompany" placeholder="회사">
       <input type="text" class="newDivision" placeholder="부서">
@@ -93,7 +25,7 @@
     </div>
 
     <div class="namecardList">
-
+      <h2>NAMECARD LIST</h2>
       <ul class="sortList">
         <li class="sortName">이름순</li>
         <li class="sortCompany">회사순</li>
@@ -101,45 +33,37 @@
       </ul>
 
       <ul class="cardList clearfix">
-        <li class="namecard">
-          <span class="cardName">홍길동</span>
-          <span class="cardCompany">카카오뱅크</span>
-          <span class="cardDivision">UX디자인팀</span>
-          <span class="cardEmail">abd@kakaobank.co.kr</span>
-          <span class="cardMobile">010-1354-4645</span>
+        <li class="namecard color1">
+          <div class="namecardInfo">
+            <span class="cardName">홍길동</span>
+            <span class="cardMobile">010-1354-4645</span>
+            <span class="cardEmail">abd@kakaobank.co.kr</span>
+          </div>
+          <div class="namecardCompany">
+            <span class="cardCompany">카카오뱅크</span>
+            <span class="cardDivision">UX디자인팀</span>
+          </div>
           <button class="deleteBtn">X</button>
         </li>
-        <li class="namecard">
-          <span class="cardName">홍길동</span>
-          <span class="cardCompany">카카오뱅크</span>
-          <span class="cardDivision">UX디자인팀</span>
-          <span class="cardEmail">abd@kakaobank.co.kr</span>
-          <span class="cardMobile">010-1354-4645</span>
+        <li class="namecard color2">
+          <div class="namecardInfo">
+            <span class="cardName">홍길동</span>
+            <span class="cardMobile">010-1354-4645</span>
+            <span class="cardEmail">abd@kakaobank.co.kr</span>
+          </div>
+          <div class="namecardCompany">
+            <span class="cardCompany">카카오뱅크</span>
+            <span class="cardDivision">UX디자인팀</span>
+          </div>
           <button class="deleteBtn">X</button>
         </li>
-        <li class="namecard">
-          <span class="cardName">홍길동</span>
-          <span class="cardCompany">카카오뱅크</span>
-          <span class="cardDivision">UX디자인팀</span>
-          <span class="cardEmail">abd@kakaobank.co.kr</span>
-          <span class="cardMobile">010-1354-4645</span>
-          <button class="deleteBtn">X</button>
-        </li>
-        <li class="namecard">
-          <span class="cardName">홍길동</span>
-          <span class="cardCompany">카카오뱅크</span>
-          <span class="cardDivision">UX디자인팀</span>
-          <span class="cardEmail">abd@kakaobank.co.kr</span>
-          <span class="cardMobile">010-1354-4645</span>
-          <button class="deleteBtn">X</button>
-        </li>
+
       </ul>
-
     </div>
-
   </div>
 
   <script>
+    let cardDatabase = [];
     const $newInfo = document.querySelector('.newInfo');
     const $newName = document.querySelector('.newName');
     const $newCompany = document.querySelector('.newCompany');
@@ -153,33 +77,49 @@
     const regExpMobile = /^\d{3}-\d{4}-\d{4}$/;
 
     $submitBtn.onclick = e => {
-      const [, newValue, ] = [...$newInfo.children]
+      const newInfoArray = [...$newInfo.children].filter(newInfo => newInfo.nodeName === 'INPUT');
+      const newInfoBlank = newInfoArray.filter(newInfo => newInfo.value.length === 0).length === 0;
+      const newInfoValues = newInfoArray.map(newInfo => newInfo.value);
+      let [name, company, division, email, mobile] = newInfoValues;
 
-      newValue.forEach(newInfo => {
-        if (newInfo.value.length === 0) {
-          console.log('hi');
-        };
-      });
-
-      if (!regExpEmail.test($newEmail.value)) {
-        alert('이메일을 재작성하세요');
+      if (!newInfoBlank) {
+        alert('빈칸을 채워주세요');
         return;
-      }
-      if (!regExpMobile.test($newMobile.value)) {
-        alert('번호를 재작성하세요');
-        return;
-      }
+      };
 
-      console.log([...$newInfo.children].map(newInfo => newInfo.value));
+      // if (!regExpEmail.test($newEmail.value)) {
+      //   alert('이메일을 재작성하세요');
+      //   return;
+      // };
 
-      $cardList.innerHTML += `<li class="namecard">
-          <span class="cardName">${$newName.value}</span>
-          <span class="cardCompany">${$newCompany.value}</span>
-          <span class="cardDivision">${$newDivision.value}</span>
-          <span class="cardEmail">${$newEmail.value}</span>
-          <span class="cardMobile">${$newMobile.value}</span>
+      // if (!regExpMobile.test($newMobile.value)) {
+      //   alert('번호를 재작성하세요');
+      //   return;
+      // };
+
+      $cardList.innerHTML += `<li class="namecard color2">
+          <div class="namecardInfo">
+            <span class="cardName">${$newName.value}</span>
+            <span class="cardMobile">${$newMobile.value}</span>
+            <span class="cardEmail">${$newEmail.value}</span>
+          </div>
+          <div class="namecardCompany">
+            <span class="cardCompany">${$newCompany.value}</span>
+            <span class="cardDivision">${$newDivision.value}</span>
+          </div>
           <button class="deleteBtn">X</button>
         </li>`;
+
+      cardDatabase = [...cardDatabase, {
+        name,
+        company,
+        division,
+        email,
+        mobile
+      }]
+      console.log(cardDatabase);
+
+      newInfoArray.forEach(newInfo => newInfo.value = '');
     };
 
     $cardList.onclick = e => {
@@ -187,6 +127,18 @@
         $cardList.removeChild(e.target.parentNode);
       }
     };
+
+    const $sortName = document.querySelector('.sortName');
+    const $sortCompany = document.querySelector('.sortCompany');
+    const $sortRecent = document.querySelector('.sortRecent');
+
+    function sortBy(key) {
+      return cardDatabase.sort((a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0)));
+    }
+
+    $sortName.onclick = () => console.log(sortBy('name'));
+    $sortCompany.onclick = () => console.log(sortBy('company'));
+    $sortRecent.onclick = () => console.log(cardDatabase.reverse());
   </script>
 </body>
 
