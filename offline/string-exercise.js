@@ -22,7 +22,7 @@ console.log(string.indexOf('!')); // -1
 // 5. String.prototype.lastIndexOf
 string = 'Hello World';
 
-console.log(string.lastIndexOf('l')); //9
+console.log(string.lastIndexOf('l')); // 9
 console.log(string.lastIndexOf('l', 4)); // 3
 console.log(string.lastIndexOf('o')); // 7
 

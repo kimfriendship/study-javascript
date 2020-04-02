@@ -88,13 +88,19 @@ console.log(now.getDay()); // 5 (Friday)
 
 
 // 11. Date.prototype.getHours
-console.log(now);
-console.log(now.getHours()); // 20
+console.log(now); // 1900-11-30T12:34:55.412Z
+console.log(now.getHours()); // 21
 
 
 // 12. Date.prototype.setHours
+console.log(now); // 1900-11-30T12:34:55.412Z
 now.setHours(9);
-console.log(now); // 1900-11-30T01:09:16.648Z
-
+console.log(now); // 1900-11-30T00:34:55.412Z
 now.setHours(0, 0, 0, 0);
-console.log(now);
+console.log(now); // 1900-11-29T15:32:08.000Z
+
+
+// 13. Date.prototype.getMinutes
+
+
+// 14. Date.prototype.setMinutes
