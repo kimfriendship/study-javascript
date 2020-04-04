@@ -52,7 +52,7 @@ const render = () => {
             <span class="cardDivision">${card.division}</span>
             <span class="cardPosition">${card.position}</span>
           </div>
-          <img class="favoriteBtn ${card.favorite ? 'far' : 'fas'}" src="./img/fav-icon.png">
+          <img class="favoriteBtn ${card.favorite ? 'far' : 'fas'}" src="./img/fav-icon${card.favorite ? '-on' : ''}.png">
           <img class="deleteBtn" src="./img/close-btn.png">
         </li>`;
   };
@@ -63,6 +63,8 @@ const render = () => {
   // html 부분도 li 함수로 만들어 중복을 피했습니다.
   cardList.forEach(card => html += li(card));
   favCardList.forEach(card => favHtml += li(card));
+
+  console.log(favHtml)
 
   $cardList.innerHTML = html;
   $favList.innerHTML = favHtml;
@@ -191,7 +193,7 @@ $submitBtn.onclick = () => {
       case !newValues[4]:
         $warningMsg.textContent = '이메일을 입력해 주세요.';
         return;
-      case !newValues[5]:
+      default:
         $warningMsg.textContent = '핸드폰 번호를 입력해 주세요.';
         return;
     };
