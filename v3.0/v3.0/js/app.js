@@ -38,8 +38,18 @@ const render = () => {
   });
 
   $leftItems.textContent = `${todos.filter(todo => !todo.completed).length}`;
-  $doneItems.textContent = `${todos.length - $leftItems.textContent}`
+  $doneItems.textContent = `${todos.length - $leftItems.textContent}`;
   $todos.innerHTML = html;
+};
+
+const getTodos = () => {
+  todos = [
+{ id: 2, content: 'CSS', completed: false },
+{ id: 1, content: 'HTML', completed: true },
+{ id: 3, content: 'JS', completed: false },
+];
+
+  render();
 };
 
 const generateId = () => {
@@ -52,7 +62,7 @@ const removeTodo = id => {
   render(todos);
 };
 
-window.onload = () => render();
+window.onload = () => getTodos();
 
 $nav.onclick = e => {
   [...$nav.children].forEach(menu => {
@@ -79,13 +89,10 @@ $inputTodo.onkeyup = e => {
 };
 
 $todos.onchange = e => {
-  let id = e.target.parentNode.id;
+  const id = e.target.parentNode.id;
 
   todos = todos.map(todo => {
-    return todo.id === +id ? {
-      ...todo,
-      completed: !todo.completed
-    } : todo
+    return todo.id === +id ? { ...todo, completed: !todo.completed } : todo
   });
 
   render();
@@ -109,7 +116,7 @@ $completeAll.onchange = e => {
 };
 
 $clearBtn.onclick = e => {
-  let completed = todos.filter(todo => todo.completed).map(completedTodo => completedTodo.id)
+  const completed = todos.filter(todo => todo.completed).map(completedTodo => completedTodo.id)
 
   completed.forEach(id => removeTodo(id));
 };
