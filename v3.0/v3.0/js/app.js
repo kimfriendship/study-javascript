@@ -17,7 +17,7 @@ const getCompletedTodos = () => todos.filter(({ completed }) => completed);
 
 const render = () => {
   let html = '';
-  let _todos = navState === 'active' ? getActiveTodos() : (navState === 'completed' ? getCompletedTodos() : todos);
+  const _todos = navState === 'active' ? getActiveTodos() : (navState === 'completed' ? getCompletedTodos() : todos);
 
   _todos.forEach(({ id, content, completed }) => {
     html += `<li id="${id}" class="todo-item">
@@ -42,9 +42,7 @@ const getTodos = () => {
   render();
 };
 
-const generateId = () => {
-  return todos.length !== 0 ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
-};
+const generateId = () => (todos.length !== 0 ? Math.max(...todos.map(todo => todo.id)) + 1 : 1);
 
 const createTodo = content => {
   todos = [{ id: generateId(), content, completed: false }, ...todos];
@@ -95,7 +93,6 @@ $todos.onclick = e => {
 
 $completeAll.onchange = e => {
   todos = todos.map(todo => ({ ...todo, completed: e.target.checked }));
-
   render();
 };
 
