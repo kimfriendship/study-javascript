@@ -1,7 +1,6 @@
 // State
 let todos = [];
-let activeTodos = [];
-let completedTodos = [];
+// let navState = 'all';
 
 const $nav = document.querySelector('.nav');
 const $active = document.getElementById('active');
@@ -16,18 +15,12 @@ const $completeAll = document.getElementById('ck-complete-all');
 const render = () => {
   let html = '';
   let todoState = '';
-  activeTodos = todos.filter(todo => !todo.completed);
-  completedTodos = todos.filter(todo => todo.completed);
+  const activeTodos = todos.filter(todo => !todo.completed);
+  const completedTodos = todos.filter(todo => todo.completed);
 
-  if ($active.classList.contains('active')) {
-    todoState = activeTodos;
-  } else if ($completed.classList.contains('active')) {
-    todoState = completedTodos;
-  } else {
-    todoState = todos;
-  };
+  todoState = $active.classList.contains('active') ? activeTodos : ($completed.classList.contains('active') ? completedTodos : todos);
 
-  todoState.sort((todo1, todo2) => (todo1['id'] < todo2['id'] ? 1 : (todo1['id'] > todo2['id'] ? -1 : 0)))
+  todoState.sort((todo1, todo2) => (todo1['id'] < todo2['id'] ? 1 : (todo1['id'] > todo2['id'] ? -1 : 0)));
 
   todoState.forEach(todo => {
     html += `<li id="${todo.id}" class="todo-item">
@@ -65,10 +58,8 @@ const removeTodo = id => {
 window.onload = () => getTodos();
 
 $nav.onclick = e => {
-  [...$nav.children].forEach(menu => {
-    if (menu.id === e.target.id) menu.classList.toggle('active', true);
-    else menu.classList.toggle('active', false);
-  });
+  if (!e.target.matches('.nav > li:not(.active)')) return;
+  [...$nav.children].forEach(menu => menu.classList.toggle('active', menu.id === e.target.id));
 
   render();
 };
@@ -91,9 +82,7 @@ $inputTodo.onkeyup = e => {
 $todos.onchange = e => {
   const id = e.target.parentNode.id;
 
-  todos = todos.map(todo => {
-    return todo.id === +id ? { ...todo, completed: !todo.completed } : todo
-  });
+  todos = todos.map(todo => todo.id === +id ? { ...todo, completed: !todo.completed } : todo);
 
   render();
 };
