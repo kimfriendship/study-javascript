@@ -47,7 +47,6 @@ const render = () => {
   });
 
   $todos.innerHTML = html;
-  console.log(todos);
 };
 
 const getTodos = () => {
@@ -76,11 +75,13 @@ $inputTodo.onkeyup = e => {
 
 $todos.onchange = e => {
   const id = e.target.parentNode.id;
+  const [{ completed }] = todos.filter(todo => todo.id === +id);
 
   axios.patch(`/todos/${id}`, data => {
-    todos = todos.map(todo => (todo.id === +id ? {...todo, completed: !todo.completed} : todo));
+    todos = todos.map(todo => (todo.id === +id ? { ...todo, ...data } : todo));
     render();
-  });
+console.log(todos)
+  }, { completed: !completed });
 };
 
 $todos.onclick = e => {
