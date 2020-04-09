@@ -12,33 +12,35 @@ const $completedTodos = document.querySelector('.completed-todos');
 const $completeAll = document.querySelector('.complete-all > .checkbox');
 
 const ajax = (() => {
-  const request = (method, url, callback, payload) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open(method, url);
-    xhr.setRequestHeader('content-type', 'application/json');
-    xhr.send(JSON.stringify(payload));
+  const request = (method, url, payload) => {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open(method, url);
+      xhr.setRequestHeader('content-type', 'application/json');
+      xhr.send(JSON.stringify(payload));
 
-    xhr.onload = () => {
-      if (xhr.status === 200 || xhr.status === 201) {
-        callback(JSON.parse(xhr.response));
-      } else {
-        console.error(`${xhr.status} ${xhr.statusText}`);
-      }
-    };
+      xhr.onload = () => {
+        if (xhr.status === 200 || xhr.status === 201) {
+          resolve(JSON.parse(xhr.response));
+        } else {
+          reject(new Error(`${xhr.status} ${xhr.statusText}`));
+        }
+      };
+    });
   };
 
   return {
-    get(url, callback) {
-      request('GET', url, callback);
+    get(url) {
+      return request('GET', url);
     },
-    post(url, payload, callback) {
-      request('POST', url, callback, payload);
+    post(url, payload) {
+      return request('POST', url, payload);
     },
-    patch(url, payload, callback) {
-      request('PATCH', url, callback, payload);
+    patch(url, payload) {
+      return request('PATCH', url, payload);
     },
-    delete(url, callback) {
-      request('DELETE', url, callback);
+    delete(url) {
+      return request('DELETE', url);
     },
   };
 })();
@@ -64,10 +66,10 @@ const render = () => {
 };
 
 const getTodos = () => {
-  ajax.get('/todos', data => {
-    todos = data;
-    render();
-  });
+  ajax.get('/todos')
+    .then(data => todos = data)
+    .then(render)
+    .catch(err => console.error(err));
 };
 
 const generateId = () => (todos.length ? Math.max(...todos.map(({ id }) => id)) + 1 : 1);
@@ -90,10 +92,10 @@ $inputTodo.onkeyup = e => {
   const content = e.target.value.trim();
   if (e.keyCode !== 13 || content === '') return;
 
-  ajax.post('/todos', { id: generateId(), content, completed: false }, data => {
-    todos = [data, ...todos];
-    render();
-  });
+  ajax.post('/todos', { id: generateId(), content, completed: false })
+    .then(data => todos = [data, ...todos])
+    .then(render)
+    .catch(err => console.error(err));
 
   e.target.value = '';
 };
@@ -102,31 +104,27 @@ $todos.onclick = ({ target }) => {
   const id = target.parentNode.id;
   if (!target.matches('.todos > li > i.remove-todo')) return;
 
-  ajax.delete(`/todos/${id}`, () => {
-    todos = todos.filter(todo => todo.id !== +id);
-    render();
-  });
+  ajax.delete(`/todos/${id}`)
+    .then(() => todos = todos.filter(todo => todo.id !== +id))
+    .then(render)
+    .catch(err => console.log(err));
 };
 
 $todos.onchange = ({ target }) => {
   const id = target.parentNode.id;
   const completed = target.checked;
 
-  ajax.patch(`/todos/${id}`, { completed }, data => {
-    todos = todos.map(todo => (todo.id === +id ? data : todo));
-    render();
-  });
+  ajax.patch(`/todos/${id}`, { completed })
+    .then(data => todos = todos.map(todo => (todo.id === +id ? data : todo)))
+    .then(render)
+    .catch(err => console.log(err));
 };
 
 $completeAll.onchange = () => {
   const completed = $completedTodos.checked;
-  // todos.forEach(todo => ajax.patch(`/todo/${todo.id}`, { completed }, data => {
-  //   todos = todos.map(td => (td.id === todo.id ? data : td));
-  // }));
+
 };
 
 $clearBtn.onclick = () => {
-  // todos.forEach(todo => ajax.delete(`/todo/${todo.id}`, () => {
-  //   todos = todos.filter(td => td.id !== todo.id);
-  // }));
+
 };
