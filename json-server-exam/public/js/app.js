@@ -23,10 +23,10 @@ const axios = (() => {
     get(url, callback) {
       request('GET', url, callback);
     },
-    post(url, callback, payload) {
+    post(url, payload, callback) {
       request('POST', url, callback, payload);
     },
-    patch(url, callback, payload) {
+    patch(url, payload, callback) {
       request('PATCH', url, callback, payload);
     },
     delete(url, callback) {
@@ -65,23 +65,22 @@ $inputTodo.onkeyup = e => {
   const content = e.target.value.trim();
   if (e.keyCode !== 13 || content === '') return;
 
-  axios.post('/todos', data => {
+  axios.post('/todos', { id: generateId(), content, completed: false }, data => {
     todos = [data, ...todos];
     render();
-  }, { id: generateId(), content, completed: false });
+  });
 
   e.target.value = '';
 };
 
 $todos.onchange = e => {
   const id = e.target.parentNode.id;
-  const [{ completed }] = todos.filter(todo => todo.id === +id);
+  const completed = e.target.checked;
 
-  axios.patch(`/todos/${id}`, data => {
-    todos = todos.map(todo => (todo.id === +id ? { ...todo, ...data } : todo));
+  axios.patch(`/todos/${id}`, { completed }, data => {
+    todos = todos.map(todo => (todo.id === +id ? data : todo));
     render();
-console.log(todos)
-  }, { completed: !completed });
+  });
 };
 
 $todos.onclick = e => {

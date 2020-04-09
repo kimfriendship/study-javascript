@@ -19,11 +19,6 @@
       "id": 4,
       "content": "REACT",
       "completed": false
-    },
-    {
-      "id": 5,
-      "content": "GO HOME",
-      "completed": true
     }
   ]
 }
