@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Popup</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+
+    body {
+      font-family: 'Open Sans';
+      font-weight: 300;
+      background-color: #D6E1E5;
+      width: 100%;
+    }
+
+    h1 {
+      color: #DB5B33;
+      font-weight: 300;
+      text-align: center;
+    }
+    
+    .overlay {
+      background: rgba(68, 68, 68, 0.425);
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+
+    .popup {
+      width: 500px;
+      height: 200px;
+      padding: 10px 30px 30px;
+      position: fixed;
+      top: 20px;
+      left: calc(50% - 250px);
+      background: white;
+      z-index: 100;
+      display: none;
+      box-shadow: 10px 30px 30px rgba(26, 26, 26, 0.425);
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      background: none;
+    }
+    /* CSS 작성 바랍니다. */
+  </style>
+</head>
+<body>
+  <h1>JavaScript Popup</h1>
+
+  <div class="popup">
+    <h1>JavaScript Popup</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+    <button class="btn-close">X</button>
+    <input type="text">
+    <button class="btn-ok">OK</button>
+    <button class="btn-cancel">Cancel</button>
+  </div>
+  <div class="overlay"></div>
+
+  <button class="toggle-popup">show popup</button>
+
+  <p class="popup-message"></p>
+  <script>
+    const $popupBtn = document.querySelector('.toggle-popup');
+    const $overlay = document.querySelector('.overlay');
+    const $popup = document.querySelector('.popup');
+    const $okBtn = document.querySelector('.btn-ok');
+    const $cancelBtn = document.querySelector('.btn-cancel');
+    const $closeBtn = document.querySelector('.btn-close');
+    const $input = document.querySelector('.popup > input');
+    const $msg = document.querySelector('.popup-message');
+
+    const closePopup = () => {
+      $popup.style.display = 'none';
+      $overlay.style.display = 'none';
+    };
+
+    $popupBtn.onclick = () => {
+      $popup.style.display = 'block';
+      $overlay.style.display = 'block';
+    };
+
+    $okBtn.onclick = () => {
+      $msg.textContent = `form popup: ${$input.value}`;
+      closePopup();
+    };
+
+    $closeBtn.addEventListener('click', closePopup);
+    $cancelBtn.addEventListener('click', closePopup);
+
+    window.onclick = ({ target }) => {
+      if (target !== $overlay || target === $popupBtn) return;
+      closePopup();
+    };
+  </script>
+</body>
+</html>
