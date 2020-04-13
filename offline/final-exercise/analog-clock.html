@@ -86,13 +86,9 @@
     function getDigitalTime() {
       setInterval(() => {
         const now = new Date();
-        hour = now.getHours();
-        min = now.getMinutes();
-        sec = now.getSeconds();
-
-        hour = makeTwoDigits(hour);
-        min = makeTwoDigits(min);
-        sec = makeTwoDigits(sec);
+        hour = makeTwoDigits(now.getHours());
+        min = makeTwoDigits(now.getMinutes());
+        sec = makeTwoDigits(now.getSeconds());
 
         $digitalClock.textContent = `${hour}:${min}:${sec}`;
       }, 1000);
