@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stop watch</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+    .stop-watch {
+      font-family: 'Source Code Pro', monospace;
+      text-align: center;
+      font-size: 3em;
+      padding: 30px;
+    }
+
+    .control {
+      width: 300px;
+      padding: 5px;
+      margin-top: 15px;
+      font-size: 36px;
+      font-weight: bold;
+      border: 2px solid #f44336;
+      border-radius: 4px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .control:hover {
+      background: #f44336;
+      color: aliceblue;
+    }
+  </style>
+  <title>Stop watch</title>
+</head>
+<body>
+  <div class="stop-watch">
+    <div class="display">00:00:00</div>
+    <button class="control">Start</button>
+  </div>
+  <script>
+    const $display = document.querySelector('.display');
+    const $controlBtn = document.querySelector('.control');
+
+    let isRunning = false;
+    let time = 0;
+    let ms = 0;
+    let sec = 0;
+    let min = 0;
+
+    let timerId;
+
+    function start() {
+      timerId = setInterval(() => {
+        isRunning = true;
+        time += 1;
+        ms = time % 100;
+        sec = Math.floor(time / 100) % 60;
+        min = Math.floor(Math.floor(time / 100) / 60);
+
+        ms = ms < 10 ? `0${ms}` : ms;
+        sec = sec < 10 ? `0${sec}` : sec;
+        min = min < 10 ? `0${min}` : min;
+
+        $display.textContent = `${min}:${sec}:${ms}`;
+        $controlBtn.textContent = 'Stop';
+      }, 10);
+    }
+
+    function stop() {
+      clearInterval(timerId);
+      isRunning = false;
+    }
+
+    $controlBtn.onclick = () => {
+      if (isRunning === false) {
+        start();
+      } else {
+        stop();
+      }
+    };
+  </script>
+</body>
+</html>
