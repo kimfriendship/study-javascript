@@ -48,21 +48,18 @@
     let ms = 0;
     let sec = 0;
     let min = 0;
-
     let timerId;
+
+    const makeTwoDigits = num => num = num < 10 ? `0${num}` : num;
 
     function start() {
       timerId = setInterval(() => {
-        isRunning = true;
         time += 1;
-        ms = time % 100;
-        sec = Math.floor(time / 100) % 60;
-        min = Math.floor(Math.floor(time / 100) / 60);
+        ms = makeTwoDigits(time % 100);
+        sec = makeTwoDigits(Math.floor(time / 100) % 60);
+        min = makeTwoDigits(Math.floor(Math.floor(time / 100) / 60));
 
-        ms = ms < 10 ? `0${ms}` : ms;
-        sec = sec < 10 ? `0${sec}` : sec;
-        min = min < 10 ? `0${min}` : min;
-
+        isRunning = true;
         $display.textContent = `${min}:${sec}:${ms}`;
         $controlBtn.textContent = 'Stop';
       }, 10);
@@ -74,11 +71,8 @@
     }
 
     $controlBtn.onclick = () => {
-      if (isRunning === false) {
-        start();
-      } else {
-        stop();
-      }
+      if (!isRunning) start();
+      else stop();
     };
   </script>
 </body>
