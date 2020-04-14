@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Toast UI</title>
+  <style>
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+
+  body {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    background-color: #D6E1E5;
+  }
+
+  h1 {
+    color: #DB5B33;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .toast-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+  }
+
+  .toast {
+    height: 70px;
+    width: 100%;
+    padding: 15px;
+    position: relative;
+    transform: translate3d(300px, 0, 0);
+  }
+
+  .show {
+    transform: translate3d(0, 0, 0);
+    transition: 0.8s ease-in;
+  }
+
+  .toast > h2 {
+    margin: 0 0 15px;
+    font-size: 20px;
+  }
+
+  .toast > span {
+    font-weight: 400;
+  }
+
+  .success {
+    background-color: rgb(173, 226, 191);
+    color: rgb(55, 117, 75);
+  }
+
+  .error {
+    background-color: rgb(250, 177, 177);
+    color: rgb(153, 49, 49);
+  }
+
+  .warning {
+    background-color: rgb(250, 250, 188);
+    color: rgb(116, 116, 61);
+  }
+
+  .closeBtn{
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: inherit;
+  }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Toast</h1>
+
+  <button class="show-success">Success</button>
+  <button class="show-error">Error</button>
+  <button class="show-warning">Warning</button>
+
+  <div class="toast-container"></div>
+  <script>
+    const $successBtn = document.querySelector('.show-success');
+    const $errorBtn = document.querySelector('.show-error');
+    const $warningBtn = document.querySelector('.show-warning');
+    const $toastContainer = document.querySelector('.toast-container');
+
+    const removeToast = () => {
+      setTimeout(() => {
+        const toast = $toastContainer.firstElementChild;
+        $toastContainer.removeChild(toast);
+      }, 5000);
+    };
+
+    const showToast = () => {
+      setTimeout(() => {
+        [...$toastContainer.children].forEach(toast => toast.classList.add('show'));
+      }, 0);
+    };
+
+    const createToast = ({ target }) => {
+      const toastType = target.className.substring(5);
+
+      const html = `<div class="${toastType} toast">
+        <h2>${target === $successBtn ? 'Well done!' : 'Check it out!'}</h2>
+        <span>This is a ${toastType} alert</span>
+        <button class="closeBtn">x</button>
+      </div>`;
+
+      $toastContainer.innerHTML += html;
+
+      showToast();
+      removeToast();
+    };
+
+    $successBtn.addEventListener('click', createToast);
+    $errorBtn.addEventListener('click', createToast);
+    $warningBtn.addEventListener('click', createToast);
+
+    $toastContainer.onclick = ({ target }) => {
+      if (!target.matches('.toast > button.closeBtn')) return;
+      target.parentNode.style.display = 'none';
+    };
+  </script>
+</body>
+</html>
+
+<!-- 1. 토스트 제목에 써있는 숫자는 무슨 규칙인가?
+2. 버튼을 연속으로 누를때 토스트 트랜지션이 유지되는 방법? -->
