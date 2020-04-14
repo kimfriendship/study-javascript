@@ -110,7 +110,7 @@
     const $gradientAngle = document.querySelector('.gradient-angle');
 
     // .range-track 요소의 정보
-    const { left, right, width } = $track.getBoundingClientRect();
+    const { left, width } = $track.getBoundingClientRect();
     let initialCoord = left;
     let offset = 0;
     /**
@@ -136,6 +136,7 @@
       offset = offset > width ? width : (offset < 0 ? 0 : offset);
 
       $handle.style.transform = `translate3d(${offset}px, 0, 0)`;
+
       fillRange();
       getGradient();
     }
