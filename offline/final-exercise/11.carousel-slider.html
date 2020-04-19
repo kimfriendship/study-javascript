@@ -133,15 +133,9 @@
       }
 
       init() {
-        /*
-          carousel-item의 width/height는 가변적이다.
-          따라서 carousel의 윈도우 역할을 하는 carousel 요소의 width/height는
-          첫번째 carousel-item의 width/height를 취득해 셋팅한다.
-        */
         this.carousel.style.width = this.itemWidth + 'px';
         this.carousel.style.height = this.itemHeight + 'px';
 
-        // carousel 요소의 width/height의 셋팅이 완료되면 carousel 요소를 보여준다.
         this.carousel.style.opacity = 1;
 
         if (this.config.infinite) {
