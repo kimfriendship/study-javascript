@@ -1,0 +1,1 @@
+(()=>{var o={151:o=>{o.exports={logResult:o=>`결과는 ${o}입니다.`}},555:(o,s,t)=>{const{logResult:r}=t(151);o.exports={sum:(o,s)=>console.log(r(o+s))}}},s={};function t(r){if(s[r])return s[r].exports;var e=s[r]={exports:{}};return o[r](e,e.exports,t),e.exports}(()=>{const{sum:o}=t(555);o(1,2)})()})();
