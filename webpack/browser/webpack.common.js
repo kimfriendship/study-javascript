@@ -7,7 +7,7 @@ const webpack = require("webpack");
 const isProduction = process.env.NODE_ENV === "PRODUCTION";
 
 module.exports = {
-  entry: "./index.js",
+  entry: "./src/index.js",
   output: {
     filename: "[name].[chunkhash].js", //hash, contenthash, chunkhash
     path: path.resolve(__dirname, "dist"),
@@ -15,28 +15,64 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: [
-          // {
-          //   loader: "style-loader",
-          //   options: {
-          //     injectType: "singletonStyleTag",
-          //   },
-          // },
+        test: /\.s?css$/,
+        oneOf: [
           {
-            loader: MiniCssExtractPlugin.loader,
+            test: /\.module\.s?css$/,
+            use: [
+              // {
+              //   loader: "style-loader",
+              //   options: {
+              //     injectType: "singletonStyleTag",
+              //   },
+              // },
+              {
+                loader: MiniCssExtractPlugin.loader,
+              },
+              {
+                loader: "css-loader",
+                options: {
+                  modules: true,
+                },
+              },
+              "sass-loader",
+            ],
           },
           {
-            loader: "css-loader",
-            options: {
-              modules: true,
-            },
+            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
           },
         ],
       },
       {
         test: /\.hbs$/,
         use: ["handlebars-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name() {
+                if (!isProduction) {
+                  return "[path][name].[ext]";
+                }
+                return "[contenthash].[ext]";
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
       },
     ],
   },

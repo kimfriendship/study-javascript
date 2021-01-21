@@ -4,7 +4,7 @@ const common = require("./webpack.common");
 const config = {
   mode: "development",
   devServer: {
-    open: true,
+    open: false,
     overlay: true,
     historyApiFallback: {
       rewrites: [
