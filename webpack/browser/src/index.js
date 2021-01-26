@@ -2,6 +2,7 @@ import "normalize.css";
 import styles from "./index.module.scss";
 import Img from "./assets/DND_Map.png";
 import Svg from "./assets/iconfinder_weather-02_1530391.svg";
+import "@babel/polyfill";
 
 function component() {
   const element = document.createElement("div");

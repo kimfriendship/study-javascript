@@ -6,6 +6,14 @@ div {
 
 .helloWebpack {
   color: $color;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: lavender;
+  margin: 0 auto;
 }
 
 /* comments */

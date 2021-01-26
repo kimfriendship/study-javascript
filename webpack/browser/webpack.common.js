@@ -3,6 +3,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
+const postcssLoader = {
+  loader: "postcss-loader",
+  options: {
+    postcssOptions: {
+      plugins: [require("autoprefixer")],
+    },
+  },
+};
 
 const isProduction = process.env.NODE_ENV === "PRODUCTION";
 
@@ -35,11 +43,17 @@ module.exports = {
                   modules: true,
                 },
               },
+              postcssLoader,
               "sass-loader",
             ],
           },
           {
-            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+            use: [
+              MiniCssExtractPlugin.loader,
+              "css-loader",
+              postcssLoader,
+              "sass-loader",
+            ],
           },
         ],
       },
@@ -73,6 +87,11 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /.js/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
       },
     ],
   },
